@@ -9,7 +9,7 @@ const About = () => {
       sx={{
         position: "absolute",
         top: "0",
-        left: "-25px",
+        left: "-20px",
         margin: "0",
         padding: "0",
         border: "0",
@@ -22,12 +22,12 @@ const About = () => {
           marginLeft: "320px",
           marginTop: "50px",
           padding: "10px",
-          width: "1500px",
-          backgroundColor: "rgba(0, 0, 0, 0.3)",
+          width: "80%",
+          backgroundColor: "rgba(255, 255, 255, 0.5)",
         }}
       >
         <h1>About page!</h1>
-        <Typography fontSize={"1.2em"} color="white">
+        <Typography fontSize={"1.2em"} color="black">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
           libero magna, rutrum non tellus a, euismod varius dui. Sed at laoreet
           nisi. Ut vel augue eleifend, cursus neque ac, pretium leo. Nullam
@@ -61,20 +61,18 @@ const About = () => {
         </Typography>
 
         <h1>Contact info</h1>
-        <Container
-          sx={{ marginTop: "60px", marginBottom: "60px", display: "flex" }}
-        >
+        <Container sx={{ marginTop: "60px", display: "flex" }}>
           <Container
             sx={{
               backgroundImage: `url(${krisImage})`,
               backgroundRepeat: "no-repeat",
-              backgroundSize: "cover",
+              backgroundSize: "contain",
               width: "500px",
-              height: "500px",
+              height: "300px",
               marginRight: "20px",
             }}
           ></Container>
-          <Typography fontSize={25} color="white">
+          <Typography fontSize={"1.5vw"} color="black">
             Kristo is a software engineer with 300 years of experience
             <br />
             E-mail: relk@hot.ee <br />
@@ -90,13 +88,13 @@ const About = () => {
             sx={{
               backgroundImage: `url(${katiImage})`,
               backgroundRepeat: "no-repeat",
-              backgroundSize: "cover",
+              backgroundSize: "contain",
               width: "500px",
               height: "500px",
               marginRight: "20px",
             }}
           ></Container>
-          <Typography fontSize={25} color="white">
+          <Typography fontSize={"1.5vw"} color="black">
             Kati is a software engineer with 300 years of experience
             <br />
             E-mail: Kati@hot.ee <br />
