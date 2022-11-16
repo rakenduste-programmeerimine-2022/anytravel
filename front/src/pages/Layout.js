@@ -6,12 +6,14 @@ const Layout = () => {
   return (
     <Box
       sx={{
+        left: "0",
         width: "15%",
         height: "100%",
         position: "fixed",
         display: "flex",
         flexDirection: "column",
-        backgroundColor: "rgba(100, 100, 100, 0.8)",
+        backgroundColor: "rgba(100, 100, 100, 0.9)",
+        boxShadow: "5px 0px 10px rgba(0,0,0, 0.5)",
       }}
     >
       <Button
@@ -19,8 +21,8 @@ const Layout = () => {
         variant="h6"
         component="div"
         sx={{
-          marginTop: "40px",
-          marginBottom: "30px",
+          marginTop: "16%",
+          marginBottom: "12%",
           backgroundImage: `url(${Image})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
@@ -31,17 +33,52 @@ const Layout = () => {
       >
         <Link to="/"></Link>
       </Button>
-      <Button component="div" sx={{ marginTop: "20px", fontSize: "120%" }}>
+      <Button
+        color="success"
+        variant="text"
+        component="div"
+        sx={{
+          marginTop: "8%",
+          fontSize: "110%",
+          borderBottom: "1px solid black",
+        }}
+      >
         <Link to="/Search">Search a location</Link>
       </Button>
-      <Button component="div" sx={{ marginTop: "20px", fontSize: "120%" }}>
+      <Button
+        variant="text"
+        component="div"
+        sx={{
+          marginTop: "8%",
+          fontSize: "110%",
+          borderBottom: "1px solid black",
+        }}
+      >
         <Link to="/MyTrips">My trips</Link>
       </Button>
-      <Button component="div" sx={{ marginTop: "20px", fontSize: "120%" }}>
+      <Button
+        variant="text"
+        component="div"
+        sx={{
+          marginTop: "8%",
+          fontSize: "110%",
+          borderBottom: "1px solid black",
+        }}
+      >
         <Link to="/Create">Create account</Link>
       </Button>
-      <Button component="div" sx={{ marginTop: "20px", fontSize: "120%" }}>
-        <Link to="/About">About</Link>
+      <Button
+        variant="text"
+        component="div"
+        sx={{
+          marginTop: "8%",
+          fontSize: "110%",
+          borderBottom: "1px solid black",
+        }}
+      >
+        <Link to="/About" color={"white"}>
+          About
+        </Link>
       </Button>
       <Outlet />
     </Box>
