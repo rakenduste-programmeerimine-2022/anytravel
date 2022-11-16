@@ -1,4 +1,4 @@
-import { Button, Container, TextField } from "@mui/material";
+import { Button, Container, TextField, InputLabel } from "@mui/material";
 import Layout from "./Layout.js";
 
 const CreateAccount = () => {
@@ -26,7 +26,7 @@ const CreateAccount = () => {
           left: "30%",
           padding: "40px",
           width: "600px",
-          backgroundColor: "rgba(255,255,255,0.8)",
+          backgroundColor: "rgba(255,255,255, 0.7)",
           borderRadius: "10px",
           "& .MuiTextField-root": { m: 1, width: "40ch" },
         }}
@@ -76,7 +76,15 @@ const CreateAccount = () => {
           variant="filled"
         />
         <br></br>
-        <Button variant="contained" color="success">
+        <Button
+          variant="contained"
+          color="success"
+          size="small"
+          sx={{
+            fontSize: "0.8em",
+            marginLeft: "1.2%",
+          }}
+        >
           <p>Confirm</p>
         </Button>
       </Container>
