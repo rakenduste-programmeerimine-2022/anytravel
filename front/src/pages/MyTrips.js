@@ -1,5 +1,16 @@
-import { Container, Typography, Button } from "@mui/material";
+import {
+  Container,
+  Typography,
+  Button,
+  TextField,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from "@mui/material";
 import Layout from "./Layout.js";
+import * as React from "react";
 
 const MyTrips = () => {
   return (
@@ -19,10 +30,11 @@ const MyTrips = () => {
       <Container
         sx={{
           position: "relative",
-          top: "10%",
           marginTop: "10%",
+          top: "10%",
           left: "50%",
           width: "50%",
+          aspectRatio: "3/1",
           backgroundColor: "rgba(255, 255, 255, 0.5)",
           padding: "3%",
           borderRadius: "0.5em",
