@@ -98,6 +98,7 @@ const LoginRegister = () => {
   return (
     <Container
       sx={{
+        zIndex: "3",
         position: "fixed",
         display: "absolute",
         top: "5%",

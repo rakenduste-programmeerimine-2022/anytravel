@@ -23,7 +23,6 @@ import { useParams } from "react-router-dom";
 const Weather = () => {
   function Location() {
     var loc = window.location.href.slice(36);
-    console.log(typeof loc);
     if (loc == "") {
       loc = "tallinn";
     }
@@ -32,7 +31,6 @@ const Weather = () => {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${Location()}&appid=895284fb2d2c50a520ea537456963d9c&units=metric`;
   const overcast = "rainy";
   let weatherimage = "";
-  console.log(url);
   const [data, setData] = useState({ data: [] });
 
   useEffect(() => {
@@ -82,7 +80,7 @@ const Weather = () => {
     >
       <Typography
         sx={{
-          marginTop: "25px",
+          marginTop: "4.5vh",
           fontSize: "3vh",
           color: "white",
           textShadow: "0.2vh 0.1vh black",
