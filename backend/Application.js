@@ -1,7 +1,6 @@
 const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
-const WeatherAPI = require("./WeatherAPI");
 
 const userRouter = require("./routes/user.routes");
 
@@ -36,7 +35,6 @@ app.get("/", (req, res) => {
 app.get("/Searchresults", (req, res) => {
   console.log(req.body);
   res.header("Access-Control-Allow-Origin", "*");
-  res.send(WeatherAPI());
 });
 
 // MAIN ROUTES

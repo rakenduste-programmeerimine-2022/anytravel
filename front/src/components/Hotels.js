@@ -59,68 +59,333 @@ const Hotels = () => {
   }
   var isDone = false;
   useEffect(() => {
+    console.log("helo");
     if (!isDone) {
       console.log(hotelData);
-      //getHotels(loc);
+      getHotels(loc);
     }
   }, []);
   return (
     <Container
       sx={{
-        backgroundColor: "white",
-        width: "200%",
-        height: "50%",
         position: "absolute",
-        display: "absolute",
+        backgroundColor: "white",
+        width: "100%",
+        height: "100%",
+        left: "15%",
         top: "50%",
-        left: "50%",
-        transform: "translateX(-50%)",
+        zIndex: "-2",
+        minWidth: "80%",
       }}
     >
+      <Typography variant="h2">Hotels</Typography>
       <Container
+        disableGutters
         sx={{
-          position: "absolute",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          width: "40%",
-          aspectRatio: "1/1",
-          color: "black",
-          backgroundImage: `url()`,
-          marginTop: "10%",
-          backgroundColor: "rgb(200, 200, 200)",
+          display: "flex",
+          flexDirection: "row",
+          minWidth: "80%",
+          marginLeft: "0%",
+          minHeight: "25%",
+          border: "2px solid black",
+          borderRadius: "1em",
+          padding: "0.2em",
+          marginBottom: "5%",
         }}
       >
         <Box
           id="picture"
           sx={{
-            backgroundColor: "black",
-            width: "100%",
-            height: "30%",
-            backgroundImage: `url(${
-              hotelData.data ? hotelData.data[0].photo.images.medium.url : null
-            })`,
-            backgroundSize: "contain",
+            backgroundImage: `url("${
+              hotelData.data
+                ? hotelData.data[0].photo.images.original.url
+                : null
+            }")`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
+            width: "21.1%",
+            borderRadius: "1em",
           }}
         ></Box>
-        <Box
+        <Container
+          disableGutters
+          id="textMain"
           sx={{
-            backgroundColor: "white",
-            width: "100%",
-            height: "70%",
-            textIndent: "3%",
+            width: "35vw",
+            marginLeft: "2%",
+            display: "flex",
+            flexDirection: "column",
           }}
         >
-          <Typography sx={{ fontSize: "28px", marginBottom: "20%" }}>
-            {hotelData.data ? hotelData.data[0].name : "Pealkiri"}
+          <Typography fontSize={"1.5vw"}>
+            <b>
+              {hotelData.data
+                ? hotelData.data[0].name
+                : "Hotelli nimi lalalala"}
+            </b>{" "}
+            ** {hotelData.data ? hotelData.data[0].hotel_class : "Stars"} **
+            <br />
           </Typography>
-          <Typography sx={{ fontSize: "18px", marginBottom: "10%" }}>
-            {hotelData.data ? hotelData.data[0].name : "asjad"}
+
+          <Typography variant="p">
+            <u>
+              {hotelData.data
+                ? hotelData.data[0].location_string
+                : "LocationName"}
+            </u>{" "}
+            **
+            <u> OpenMap</u> **{" "}
+            {hotelData.data
+              ? Math.round(hotelData.data[0].distance * 100) / 100
+              : "distance"}
+            km from city center
+            <br></br>
+            <br></br>
+            <br></br>
+            {hotelData.data ? hotelData.data[0].ranking : "LocationDetails"}.
+            Price level:{" "}
+            {hotelData.data ? hotelData.data[0].price_level : "LocationDetails"}
+            /$$$ .{" "}
+            {hotelData.data
+              ? hotelData.data[0].open_now_text
+              : "LocationDetails"}
+            !
           </Typography>
-          <Typography sx={{ fontSize: "18px", marginBottom: "10%" }}>
-            {hotelData.data ? hotelData.data[0].name : "holder"}
+        </Container>
+        <Container
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            width: "22%",
+            minHeight: "20%",
+            paddingTop: "1%",
+            textAlign: "right",
+          }}
+        >
+          <Typography variant="p">
+            Rating: <></>
+            {hotelData.data ? hotelData.data[0].rating : " Rating"}/5<br></br>
+            {hotelData.data
+              ? hotelData.data[0].num_reviews
+              : "ratingAmount"}{" "}
+            reviews
           </Typography>
-        </Box>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <Typography>
+            Average price per night: <br />
+            {hotelData.data ? hotelData.data[0].price : "null"}
+          </Typography>
+        </Container>
+      </Container>
+
+      <Container
+        disableGutters
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          minWidth: "80%",
+          marginLeft: "0%",
+          minHeight: "25%",
+          border: "2px solid black",
+          borderRadius: "1em",
+          padding: "0.2em",
+          marginBottom: "5%",
+        }}
+      >
+        <Box
+          id="picture"
+          sx={{
+            backgroundImage: `url("${
+              hotelData.data
+                ? hotelData.data[1].photo.images.original.url
+                : null
+            }")`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            width: "21.1%",
+            borderRadius: "1em",
+          }}
+        ></Box>
+        <Container
+          disableGutters
+          id="textMain"
+          sx={{
+            width: "35vw",
+            marginLeft: "2%",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <Typography fontSize={"1.5vw"}>
+            <b>
+              {hotelData.data
+                ? hotelData.data[1].name
+                : "Hotelli nimi lalalala"}
+            </b>{" "}
+            ** {hotelData.data ? hotelData.data[1].hotel_class : "Stars"} **
+            <br />
+          </Typography>
+
+          <Typography variant="p">
+            <u>
+              {hotelData.data
+                ? hotelData.data[1].location_string
+                : "LocationName"}
+            </u>{" "}
+            **
+            <u> OpenMap</u> **{" "}
+            {hotelData.data
+              ? Math.round(hotelData.data[1].distance * 100) / 100
+              : "distance"}
+            km from city center
+            <br></br>
+            <br></br>
+            <br></br>
+            {hotelData.data ? hotelData.data[1].ranking : "LocationDetails"}.
+            Price level:{" "}
+            {hotelData.data ? hotelData.data[1].price_level : "LocationDetails"}
+            /$$$ .{" "}
+            {hotelData.data
+              ? hotelData.data[1].open_now_text
+              : "LocationDetails"}
+            !
+          </Typography>
+        </Container>
+        <Container
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            width: "22%",
+            minHeight: "20%",
+            paddingTop: "1%",
+            textAlign: "right",
+          }}
+        >
+          <Typography variant="p">
+            Rating: <></>
+            {hotelData.data ? hotelData.data[1].rating : " Rating"}/5<br></br>
+            {hotelData.data
+              ? hotelData.data[1].num_reviews
+              : "ratingAmount"}{" "}
+            reviews
+          </Typography>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <Typography>
+            Average price per night: <br />
+            {hotelData.data ? hotelData.data[1].price : "null"}
+          </Typography>
+        </Container>
+      </Container>
+
+      <Container
+        disableGutters
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          minWidth: "80%",
+          marginLeft: "0%",
+          minHeight: "25%",
+          border: "2px solid black",
+          borderRadius: "1em",
+          padding: "0.2em",
+          marginBottom: "5%",
+        }}
+      >
+        <Box
+          id="picture"
+          sx={{
+            backgroundImage: `url("${
+              hotelData.data
+                ? hotelData.data[0].photo.images.original.url
+                : null
+            }")`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            width: "21.1%",
+            borderRadius: "1em",
+          }}
+        ></Box>
+        <Container
+          disableGutters
+          id="textMain"
+          sx={{
+            width: "35vw",
+            marginLeft: "2%",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <Typography fontSize={"1.5vw"}>
+            <b>
+              {hotelData.data
+                ? hotelData.data[2].name
+                : "Hotelli nimi lalalala"}
+            </b>{" "}
+            ** {hotelData.data ? hotelData.data[2].hotel_class : "Stars"} **
+            <br />
+          </Typography>
+
+          <Typography variant="p">
+            <u>
+              {hotelData.data
+                ? hotelData.data[2].location_string
+                : "LocationName"}
+            </u>{" "}
+            **
+            <u> OpenMap</u> **{" "}
+            {hotelData.data
+              ? Math.round(hotelData.data[2].distance * 100) / 100
+              : "distance"}
+            km from city center
+            <br></br>
+            <br></br>
+            <br></br>
+            {hotelData.data ? hotelData.data[2].ranking : "LocationDetails"}.
+            Price level:{" "}
+            {hotelData.data ? hotelData.data[2].price_level : "LocationDetails"}
+            /$$$ .{" "}
+            {hotelData.data
+              ? hotelData.data[2].open_now_text
+              : "LocationDetails"}
+            !
+          </Typography>
+        </Container>
+        <Container
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            width: "22%",
+            minHeight: "20%",
+            paddingTop: "1%",
+            textAlign: "right",
+          }}
+        >
+          <Typography variant="p">
+            Rating: <></>
+            {hotelData.data ? hotelData.data[2].rating : " Rating"}/5<br></br>
+            {hotelData.data
+              ? hotelData.data[2].num_reviews
+              : "ratingAmount"}{" "}
+            reviews
+          </Typography>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <Typography>
+            Average price per night: <br />
+            {hotelData.data ? hotelData.data[2].price : "null"}
+          </Typography>
+        </Container>
       </Container>
     </Container>
   );
