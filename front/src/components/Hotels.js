@@ -4,7 +4,6 @@ import axios from "axios";
 import { Container, Typography, Box } from "@mui/material";
 
 const Hotels = () => {
-  var hData = [];
   // inverse geolocation asjad
   var loc = window.location.href.slice(36);
   if (loc == "") {
@@ -39,7 +38,7 @@ const Hotels = () => {
         limit: "10",
       },
       headers: {
-        "X-RapidAPI-Key": "ece877a954mshf9a21e1f9d4d9bap1eab24jsnf54f64c04361",
+        "X-RapidAPI-Key": "021a30fb30msh61df5bb1c7d8e20p12fb33jsnabd1da524add",
         "X-RapidAPI-Host": "travel-advisor.p.rapidapi.com",
       },
     };
@@ -47,7 +46,6 @@ const Hotels = () => {
     axios
       .request(options)
       .then((response) => {
-        console.log(response.data);
         if (response.data.data.length > 0 && !isDone) {
           setHotelData(response.data);
           isDone = true;
@@ -58,6 +56,7 @@ const Hotels = () => {
       });
   }
   var isDone = false;
+  var country = new Array();
   useEffect(() => {
     console.log("helo");
     if (!isDone) {
@@ -73,7 +72,7 @@ const Hotels = () => {
         width: "100%",
         height: "100%",
         left: "15%",
-        top: "50%",
+        top: "180%",
         zIndex: "-2",
         minWidth: "80%",
       }}
@@ -177,7 +176,7 @@ const Hotels = () => {
           <br></br>
           <Typography>
             Average price per night: <br />
-            {hotelData.data ? hotelData.data[0].price : "null"}
+            {hotelData.data ? hotelData.data[0].price : null}
           </Typography>
         </Container>
       </Container>
@@ -280,7 +279,7 @@ const Hotels = () => {
           <br></br>
           <Typography>
             Average price per night: <br />
-            {hotelData.data ? hotelData.data[1].price : "null"}
+            {hotelData.data ? hotelData.data[1].price : null}
           </Typography>
         </Container>
       </Container>
@@ -304,7 +303,7 @@ const Hotels = () => {
           sx={{
             backgroundImage: `url("${
               hotelData.data
-                ? hotelData.data[0].photo.images.original.url
+                ? hotelData.data[2].photo.images.original.url
                 : null
             }")`,
             backgroundSize: "cover",
@@ -383,7 +382,7 @@ const Hotels = () => {
           <br></br>
           <Typography>
             Average price per night: <br />
-            {hotelData.data ? hotelData.data[2].price : "null"}
+            {hotelData.data ? hotelData.data[2].price : null}
           </Typography>
         </Container>
       </Container>
