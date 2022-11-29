@@ -37,14 +37,14 @@ const LoginRegister = () => {
   };
 
   const form = {
-    firstname: "a",
-    lastname: "a",
-    email: "a",
-    gender: "a",
-    password: "a",
-    confirmPw: "a",
+    firstname: "",
+    lastname: "",
+    email: "",
+    gender: "",
+    password: "",
+    confirmPw: "",
     birthdate: "1999-01-01",
-    country: "a",
+    country: "",
   };
 
   const [formValue, setFormValue] = useState(form);
@@ -98,6 +98,7 @@ const LoginRegister = () => {
   return (
     <Container
       sx={{
+        zIndex: "3",
         position: "fixed",
         display: "absolute",
         top: "5%",
