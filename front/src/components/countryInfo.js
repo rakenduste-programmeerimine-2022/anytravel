@@ -6,6 +6,7 @@ import publicTransport from "./images/Public-Transport.jpg";
 
 const CountryInfo = () => {
   var loc = window.location.href.slice(36);
+  loc = loc.charAt(0).toUpperCase() + loc.slice(1);
   var isDone = false;
   if (loc == "") {
     loc = "tallinn";
@@ -32,6 +33,9 @@ const CountryInfo = () => {
 
   async function GetRequiredData(loc) {
     var country = await getAll(loc);
+    if (country == loc) {
+      loc = "";
+    }
     const options = {
       method: "GET",
       url: "https://cost-of-living-and-prices.p.rapidapi.com/prices",
@@ -42,10 +46,12 @@ const CountryInfo = () => {
       },
     };
 
+    console.log(loc, country);
+    console.log(options);
     axios
       .request(options)
       .then(function (response) {
-        console.log(response.data.prices.length);
+        console.log(response.data);
         if (response.data.prices.length > 0 && !isDone) {
           setCommoditiesData(response);
           isDone = true;
@@ -60,7 +66,7 @@ const CountryInfo = () => {
     console.log("helo");
     if (!isDone) {
       GetRequiredData(loc);
-      console.log(CommoditiesData.data);
+      console.log(CommoditiesData);
     }
   }, []);
 
@@ -143,43 +149,43 @@ const CountryInfo = () => {
           <b>Meal in Inexpensive Restaurant : </b>
           {CommoditiesData.data
             ? CommoditiesData.data.prices[35].usd.avg
-            : null}{" "}
+            : "unknown"}
           $
           <br />
           <b>Meal for 2 People, Mid-range Restaurant, Three-course : </b>
           {CommoditiesData.data
             ? CommoditiesData.data.prices[34].usd.avg
-            : null}{" "}
+            : null}
           $
           <br />
           <b>McMeal at McDonalds or Alternative Combo Meal : </b>
           {CommoditiesData.data
             ? CommoditiesData.data.prices[33].usd.avg
-            : null}{" "}
+            : null}
           $
           <br />
           <b>Domestic Beer, 0.5 liter Draught : </b>
           {CommoditiesData.data
             ? CommoditiesData.data.prices[31].usd.avg
-            : null}{" "}
+            : null}
           $
           <br />
           <b>Imported Beer, 0.33 liter Bottle : </b>
           {CommoditiesData.data
             ? CommoditiesData.data.prices[32].usd.avg
-            : null}{" "}
+            : null}
           $
           <br />
           <b>Cappuccino : </b>
           {CommoditiesData.data
             ? CommoditiesData.data.prices[29].usd.avg
-            : null}{" "}
+            : null}
           $
           <br />
           <b>Coca-Cola or other soft drinks, 0.33 liter Bottle : </b>
           {CommoditiesData.data
             ? CommoditiesData.data.prices[30].usd.avg
-            : null}{" "}
+            : null}
           $ <br />
         </Typography>
       </Box>
@@ -222,43 +228,43 @@ const CountryInfo = () => {
           <b>One-way Ticket, Local Transport : </b>
           {CommoditiesData.data
             ? CommoditiesData.data.prices[42].usd.avg
-            : null}{" "}
+            : null}
           $
           <br />
           <b>Monthly Pass, Regular Price : </b>
           {CommoditiesData.data
             ? CommoditiesData.data.prices[46].usd.avg
-            : null}{" "}
+            : null}
           $
           <br />
           <b>Taxi Start, Normal Tariff : </b>
           {CommoditiesData.data
             ? CommoditiesData.data.prices[45].usd.avg
-            : null}{" "}
+            : null}
           $
           <br />
           <b>Taxi, price for 1 km, Normal Tariff : </b>
           {CommoditiesData.data
             ? CommoditiesData.data.prices[44].usd.avg
-            : null}{" "}
+            : null}
           $
           <br />
           <b>Taxi, price for 1 hour Waiting, Normal Tariff : </b>
           {CommoditiesData.data
             ? CommoditiesData.data.prices[43].usd.avg
-            : null}{" "}
+            : null}
           $
           <br />
           <b>Gasoline, 1 liter : </b>
           {CommoditiesData.data
             ? CommoditiesData.data.prices[40].usd.avg
-            : null}{" "}
+            : null}
           $
           <br />
           <b>Volkswagen Golf 1.4 90 KW Trendline / new car : </b>
           {CommoditiesData.data
             ? CommoditiesData.data.prices[46].usd.avg
-            : null}{" "}
+            : null}
           $
           <br />
         </Typography>

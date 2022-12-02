@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState, useContext } from "react";
+import AuthContext from "../context/AuthProvider";
 import {
   Container,
   Typography,
@@ -17,9 +18,61 @@ import {
 import { Outlet, Link } from "react-router-dom";
 import axios from "axios";
 
+const LOGIN_URL = "http://localhost:8080/user/loginAuth";
+
 const LoginRegister = () => {
+  const { setAuth } = useContext(AuthContext);
   const [open, setOpen] = React.useState(false);
   const [open2, setOpen2] = React.useState(false);
+  const userRef = useRef();
+  const errRef = useRef();
+
+  const [user, setUser] = useState("");
+  const [pwd, setPwd] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+  const [successLogin, setSuccessLogin] = useState("");
+
+  /*useEffect(() => {
+    userRef.current.focus();
+  }, []);
+*/
+  useEffect(() => {
+    setErrMsg("");
+  }, [user, pwd]);
+
+  const handleLoginSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post(
+        LOGIN_URL,
+        JSON.stringify({ user, pwd }),
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      console.log(JSON.stringify(response?.data));
+      const accessToken = response?.data?.accessToken;
+      const roles = response?.data?.roles;
+      setAuth({ user, pwd, roles, accessToken });
+      setPwd("");
+      setUser("");
+      setSuccessLogin(true);
+    } catch (err) {
+      if (!err?.response) {
+        setErrMsg("no server response");
+      } else if (err.response?.status == 400) {
+        setErrMsg("Missing username or password");
+      } else if (err.response?.status == 401) {
+        setErrMsg("Unauthorized");
+      } else {
+        setErrMsg("login failed");
+      }
+      errRef.current.focus();
+    }
+    console.log(user, pwd);
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -122,35 +175,54 @@ const LoginRegister = () => {
         Log in
       </Button>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Log in to your account</DialogTitle>
-        <DialogContent>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Email Address"
-            type="email"
-            fullWidth
-            variant="standard"
-          />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Password"
-            type="password"
-            fullWidth
-            variant="standard"
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button color="success" onClick={handleClose}>
-            Log in
-          </Button>
-          <Button color="error" onClick={handleClose}>
-            Close
-          </Button>
-        </DialogActions>
+        <FormControl onSubmit={handleLoginSubmit}>
+          <DialogTitle>Log in to your account</DialogTitle>
+          <DialogContent>
+            <TextField
+              autoFocus
+              required
+              margin="dense"
+              id="name"
+              label="Email Address"
+              type="email"
+              fullWidth
+              variant="standard"
+              value={user}
+              ref={userRef}
+              onChange={(e) => setUser(e.target.value)}
+            />
+            <TextField
+              autoFocus
+              margin="dense"
+              id="pwds"
+              label="Password"
+              type="password"
+              fullWidth
+              variant="standard"
+              value={pwd}
+              onChange={(e) => setPwd(e.target.value)}
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button color="success" onClick={handleLoginSubmit}>
+              Log in
+            </Button>
+            <Button color="error" onClick={handleClose}>
+              Close
+            </Button>
+          </DialogActions>
+        </FormControl>
+        {successLogin && (
+          <Typography
+            sx={{
+              color: "green",
+              marginLeft: "50%",
+              transform: "translateX(-45%)",
+            }}
+          >
+            Log in Successful!
+          </Typography>
+        )}
       </Dialog>
 
       <Button

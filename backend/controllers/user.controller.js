@@ -2,24 +2,9 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
 const { validationResult } = require("express-validator");
+const user = require("../models/User");
 
 const saltrounds = 10;
-
-const userSchema = new mongoose.Schema(
-  {
-    firstname: { type: String, required: true },
-    lastname: { type: String, required: true },
-    email: { type: String, required: true },
-    gender: { type: String, required: true },
-    country: { type: String, required: true },
-    birthdate: { type: Date, required: true },
-    password: { type: String, required: true },
-  },
-  { timestamps: true }
-);
-
-const user = mongoose.model("User", userSchema);
-
 exports.createAcc = async (req, res) => {
   const info = req.body;
   const fname = info.firstname;
