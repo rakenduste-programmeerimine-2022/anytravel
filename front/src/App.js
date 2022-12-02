@@ -11,7 +11,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Layout></Layout>} />
+        <Route path="/" element={<SearchQuick />} />
         <Route path="/Search" element={<SearchQuick />} />
         <Route path="/MyTrips" element={<MyTrips />} />
         <Route path="/About" element={<About />} />
