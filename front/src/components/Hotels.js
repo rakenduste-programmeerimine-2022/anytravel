@@ -1,4 +1,3 @@
-import { Hotel } from "@mui/icons-material";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Container, Typography, Box } from "@mui/material";
