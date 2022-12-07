@@ -56,7 +56,7 @@ const SearchQuick = () => {
           label={labelText}
           variant="outlined"
           sx={{
-            backgroundColor: "rgba(0, 0, 0, 0.3)",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
             border: "1px solid rgba(3, 138, 255, 1)",
             borderRadius: "0.3em",
           }}

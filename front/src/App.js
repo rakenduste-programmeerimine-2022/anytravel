@@ -5,6 +5,7 @@ import About from "./pages/About.js";
 import Layout from "./pages/Layout.js";
 import CreateAccount from "./pages/CreateAccount.js";
 import SearchResult from "./pages/SearchResult.js";
+import MyAccount from "./pages/MyAccount";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path="/About" element={<About />} />
         <Route path="/Create" element={<CreateAccount />} />
         <Route path="/Searchresults" element={<SearchResult />} />
+        <Route path="/MyAccount" element={<MyAccount />} />
       </Routes>
     </Router>
   );

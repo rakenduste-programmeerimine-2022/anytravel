@@ -51,6 +51,22 @@ const Layout = () => {
             Search a location
           </Link>
         </Button>
+
+        <Button
+          variant="text"
+          component="div"
+          onClick={() => (window.location = "/MyAccount")}
+          sx={{
+            marginTop: "8%",
+            fontSize: "110%",
+            borderBottom: "0.1em solid black",
+          }}
+        >
+          <Link sx={{ fontSize: "110%" }} to="/MyAccount">
+            My account
+          </Link>
+        </Button>
+
         <Button
           onClick={() => (window.location = "/MyTrips")}
           variant="text"
@@ -85,6 +101,7 @@ const Layout = () => {
             About
           </Link>
         </Button>
+
         <Outlet />
       </Box>
       <LoginRegister></LoginRegister>
