@@ -52,7 +52,13 @@ const MyAccount = () => {
           component="nav"
           aria-label="account-stuff"
         >
-          <ListItem button>
+          <ListItem
+            button
+            onClick={() => (window.location = "/EditProfile")}
+            variant="text"
+            component="div"
+          >
+            <Link sx={{ fontSize: "110%" }} to="/EditProfile"></Link>
             <ListItemText primary="Edit profile" />
           </ListItem>
           <Divider />
