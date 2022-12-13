@@ -12,6 +12,7 @@ import PrivateRoute from "./PrivateRoutes/index";
 import PrivateRouteTrips from "./PrivateRoutes/indexMyTrips";
 import MyTripsLogged from "./pages/MyTripsLogged.js";
 import PlanTrip from "./pages/PlanTrip";
+import ViewTrip from "./pages/ViewTrip";
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
           }
         />
         <Route path="/PlanTrip" element={<PlanTrip />} />
+        <Route path="/ViewTrip" element={<ViewTrip />} />
       </Routes>
     </Router>
   );
