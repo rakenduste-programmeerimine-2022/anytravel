@@ -6,6 +6,7 @@ const User = require("../models/User");
 
 exports.login = async (req, res) => {
   const { user, pwd } = req.body;
+  console.log(req.body);
   if (!user || !pwd)
     return res.status(400).json({ message: "username and password required" });
 
@@ -17,6 +18,11 @@ exports.login = async (req, res) => {
       {
         userInfo: {
           email: foundUser.email,
+          firstname: foundUser.firstname,
+          lastname: foundUser.lastname,
+          gender: foundUser.gender,
+          country: foundUser.country,
+          birth: foundUser.birthdate,
         },
       },
       process.env.ACCESS_TOKEN_SECRET,
@@ -36,6 +42,8 @@ exports.login = async (req, res) => {
       sameSite: "None",
       maxAge: 24 * 60 * 60 * 1000,
     });
-    res.json({ accessToken });
+    res.json({
+      accessToken,
+    });
   }
 };

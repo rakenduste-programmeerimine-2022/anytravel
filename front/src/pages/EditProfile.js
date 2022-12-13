@@ -10,8 +10,27 @@ import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
 import { deepPurple } from "@mui/material/colors";
+import axios from "axios";
+import { useState, useEffect } from "react";
 
 const EditProfile = () => {
+  const [userInformation, setUserInformation] = useState("");
+
+  const usernameGet = async () => {
+    const ACC_URL = "http://localhost:8080/user/accountAuth";
+    const userInfo = localStorage.getItem("jwt");
+    const packedInfo = { token: userInfo };
+    console.log(JSON.stringify({ packedInfo }));
+    await axios.post(ACC_URL, packedInfo).then((resp) => {
+      console.log(resp);
+      setUserInformation(resp.data);
+    });
+  };
+  useEffect(() => {
+    usernameGet();
+    console.log(userInformation);
+  }, []);
+
   return (
     <Container
       sx={{
@@ -51,6 +70,9 @@ const EditProfile = () => {
           alt="Kati"
           src="../components/images/raudseltKati.jpg"
           sx={{ width: 56, height: 56 }}
+          {...(userInformation.userInfo
+            ? userInformation.userInfo.firstname[0].toUpperCase()
+            : null)}
         />
         <h1>Edit profile</h1>
         <Typography fontSize={24} color="black">
@@ -59,33 +81,59 @@ const EditProfile = () => {
         </Typography>
         <TextField
           required
+          focused
           id="filled-basic"
           label="First name"
+          value={
+            userInformation.userInfo ? userInformation.userInfo.firstname : null
+          }
           variant="filled"
         />
         <TextField
           required
+          focused
           id="filled-basic"
           label="Last name"
+          value={
+            userInformation.userInfo ? userInformation.userInfo.lastname : null
+          }
           variant="filled"
         />
-        <TextField required id="filled-basic" label="Gender" variant="filled" />
+        <TextField
+          required
+          focused
+          id="filled-basic"
+          label="Gender"
+          value={
+            userInformation.userInfo ? userInformation.userInfo.gender : null
+          }
+          variant="filled"
+        />
         <TextField
           optional
+          focused
           id="filled-basic"
           label="Nickname"
           variant="filled"
         />
         <TextField
           required
+          focused
           id="filled-basic"
           label="Email address"
+          value={
+            userInformation.userInfo ? userInformation.userInfo.email : null
+          }
           variant="filled"
         />
         <TextField
           required
+          focused
           id="filled-basic"
-          label="Country"
+          label="Country of origin"
+          value={
+            userInformation.userInfo ? userInformation.userInfo.country : null
+          }
           variant="filled"
         />
         <TextField

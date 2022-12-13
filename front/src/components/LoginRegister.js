@@ -52,6 +52,7 @@ const LoginRegister = () => {
           withCredentials: true,
         }
       );
+      localStorage.setItem("jwt", response?.data?.accessToken);
       console.log(JSON.stringify(response?.data));
       const accessToken = response?.data?.accessToken;
       const roles = response?.data?.roles;
@@ -59,6 +60,7 @@ const LoginRegister = () => {
       setPwd("");
       setUser("");
       setSuccessLogin(true);
+      handleClose();
     } catch (err) {
       if (!err?.response) {
         setErrMsg("no server response");
@@ -71,7 +73,6 @@ const LoginRegister = () => {
       }
       errRef.current.focus();
     }
-    console.log(user, pwd);
   };
 
   const handleClickOpen = () => {

@@ -8,6 +8,10 @@ import SearchResult from "./pages/SearchResult.js";
 import MyAccount from "./pages/MyAccount";
 import EditProfile from "./pages/EditProfile";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import PrivateRoute from "./PrivateRoutes/index";
+import PrivateRouteTrips from "./PrivateRoutes/indexMyTrips";
+import MyTripsLogged from "./pages/MyTripsLogged.js";
+import PlanTrip from "./pages/PlanTrip";
 
 function App() {
   return (
@@ -15,12 +19,34 @@ function App() {
       <Routes>
         <Route path="/" element={<SearchQuick />} />
         <Route path="/Search" element={<SearchQuick />} />
-        <Route path="/MyTrips" element={<MyTrips />} />
+        <Route
+          path="/MyTrips"
+          element={
+            <PrivateRouteTrips>
+              <MyTripsLogged />
+            </PrivateRouteTrips>
+          }
+        />
         <Route path="/About" element={<About />} />
         <Route path="/Create" element={<CreateAccount />} />
         <Route path="/Searchresults" element={<SearchResult />} />
-        <Route path="/MyAccount" element={<MyAccount />} />
-        <Route path="EditProfile" element={<EditProfile />} />
+        <Route
+          path="/MyAccount"
+          element={
+            <PrivateRoute>
+              <MyAccount />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/EditProfile"
+          element={
+            <PrivateRoute>
+              <EditProfile />
+            </PrivateRoute>
+          }
+        />
+        <Route path="/PlanTrip" element={<PlanTrip />} />
       </Routes>
     </Router>
   );
