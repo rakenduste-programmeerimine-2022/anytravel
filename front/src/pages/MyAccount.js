@@ -9,8 +9,26 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 import { Outlet, Link } from "react-router-dom";
+import axios from "axios";
+import { useState, useEffect } from "react";
 
 const MyAccount = () => {
+  const [userInformation, setUserInformation] = useState("");
+
+  const usernameGet = async () => {
+    const ACC_URL = "http://localhost:8080/user/accountAuth";
+    const userInfo = localStorage.getItem("jwt");
+    const packedInfo = { token: userInfo };
+    console.log(JSON.stringify({ packedInfo }));
+    await axios.post(ACC_URL, packedInfo).then((resp) => {
+      console.log(resp);
+      setUserInformation(resp.data);
+    });
+  };
+  useEffect(() => {
+    usernameGet();
+    console.log(userInformation);
+  }, []);
   return (
     <Container
       sx={{
@@ -41,8 +59,14 @@ const MyAccount = () => {
         }}
       >
         <Stack direction="row" spacing={2}></Stack>
-        <Avatar sx={{ bgcolor: deepOrange[500] }}>K</Avatar>
-        <h1>My account!</h1>
+        <Avatar sx={{ bgcolor: deepOrange[500] }}>
+          {userInformation.userInfo
+            ? userInformation.userInfo.firstname[0].toUpperCase()
+            : null}
+        </Avatar>
+        <h1>
+          {userInformation ? userInformation.userInfo.email : null} account!
+        </h1>
         <Typography fontSize={24} color="black">
           Welcome to your account page! <br />
           <br />
@@ -52,14 +76,11 @@ const MyAccount = () => {
           component="nav"
           aria-label="account-stuff"
         >
-          <ListItem
-            button
-            onClick={() => (window.location = "/EditProfile")}
-            variant="text"
-            component="div"
-          >
-            <Link sx={{ fontSize: "110%" }} to="/EditProfile"></Link>
-            <ListItemText primary="Edit profile" />
+          <ListItem button>
+            <ListItemText
+              primary="Edit profile"
+              onClick={() => (window.location = "/EditProfile")}
+            />
           </ListItem>
           <Divider />
           <ListItem button divider>

@@ -5,6 +5,8 @@ const credentials = require("./middlewares/credentials");
 const corsOptions = require("./config/corsOptions");
 const userRouter = require("./routes/user.routes");
 const cors = require("cors");
+const tripsRouter = require("./routes/trips.routes");
+var bodyParser = require("body-parser");
 
 require("dotenv").config();
 
@@ -31,8 +33,11 @@ app.get("/Searchresults", (req, res) => {
 });
 
 // MAIN ROUTES
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/user", userRouter);
+
+app.use("/myTrips", tripsRouter);
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
