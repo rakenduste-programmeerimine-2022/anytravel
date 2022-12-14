@@ -4,11 +4,11 @@ const Schema = mongoose.Schema;
 const TripSchema = new mongoose.Schema(
   {
     tripname: { type: String, required: true },
-    start: { type: String, required: true },
-    end: { type: String, required: true },
+    start: { type: Date, required: true },
+    end: { type: Date, required: true },
     hotel: { type: String, required: false },
     notes: { type: String, required: false },
-    plan: { type: Date, required: false },
+    plan: { type: String, required: false },
     userID: { type: String, required: true },
   },
   { timestamps: true }
