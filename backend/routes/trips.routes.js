@@ -9,5 +9,6 @@ router.use((req, res, next) => {
 });
 
 router.post("/createTrip", TripsController.CreateTrips);
+router.post("/fetchTrips", TripsController.GetTrips);
 
 module.exports = router;

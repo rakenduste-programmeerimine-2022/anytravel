@@ -14,6 +14,41 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 const MyTripsLogged = () => {
+  const [userInformation, setUserInformation] = useState("");
+
+  const usernameGet = async () => {
+    const ACC_URL = "http://localhost:8080/user/accountAuth";
+    const userInfo = localStorage.getItem("jwt");
+    const packedInfo = { token: userInfo };
+    await axios.post(ACC_URL, packedInfo).then((resp) => {
+      setUserInformation(resp.data);
+    });
+  };
+  const [responseData, setResponseData] = useState();
+
+  const getPostsDB = async () => {
+    await usernameGet();
+    axios
+      .post("http://localhost:8080/myTrips/fetchTrips", {
+        userID: userInformation.userInfo
+          ? userInformation.userInfo.email
+          : null,
+      })
+      .then((resp) => {
+        setResponseData(resp.data);
+        console.log("data käes");
+        console.log(resp);
+      })
+      .catch(() => {
+        console.log("hello");
+      });
+  };
+
+  useEffect(() => {
+    getPostsDB();
+    console.log(responseData);
+  }, []);
+
   return (
     <Container
       sx={{
