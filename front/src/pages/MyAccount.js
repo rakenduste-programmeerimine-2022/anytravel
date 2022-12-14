@@ -11,8 +11,38 @@ import Divider from "@mui/material/Divider";
 import { Outlet, Link } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import ListItemButton from "@mui/material/ListItemButton";
+import Button from "@mui/material/Button";
+import PropTypes from "prop-types";
 
 const MyAccount = () => {
+  const [isLoggedIn, setIsLoggedin] = useState();
+
+  const logout = async () => {
+    const ACC_URL = "http://localhost:8080/user/logout";
+    localStorage.removeItem("jwt");
+    setIsLoggedin(false);
+    await axios.get(ACC_URL, "").then((resp) => {
+      console.log(resp);
+      window.location = "http://localhost:3000/";
+    });
+  };
+
+  const [open, setOpen] = React.useState();
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   const [userInformation, setUserInformation] = useState("");
 
   const usernameGet = async () => {
@@ -76,29 +106,42 @@ const MyAccount = () => {
           component="nav"
           aria-label="account-stuff"
         >
-          <ListItem button>
+          <ListItemButton>
             <ListItemText
               primary="Edit profile"
               onClick={() => (window.location = "/EditProfile")}
             />
-          </ListItem>
+          </ListItemButton>
           <Divider />
-          <ListItem button divider>
+          <ListItemButton onClick={handleClickOpen}>
             <ListItemText primary="Notifications" />
-          </ListItem>
-          <ListItem
-            button
+          </ListItemButton>
+          <Dialog open={open} onClose={handleClose}>
+            <DialogTitle>{"Notifications"}</DialogTitle>
+            <DialogContent>
+              <DialogContentText>
+                You don't have any notifications.
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button color="error" onClick={handleClose} variant="text">
+                OK
+              </Button>
+            </DialogActions>
+          </Dialog>
+
+          <ListItemButton
             onClick={() => (window.location = "/MyTrips")}
             variant="text"
             component="div"
           >
             <Link sx={{ fontSize: "110%" }} to="/MyTrips"></Link>
             <ListItemText primary="My trips" />
-          </ListItem>
+          </ListItemButton>
           <Divider light />
-          <ListItem button>
+          <ListItemButton onClickCapture={logout}>
             <ListItemText primary="Log out" />
-          </ListItem>
+          </ListItemButton>
         </List>
       </Container>
     </Container>

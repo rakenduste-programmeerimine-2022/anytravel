@@ -4,6 +4,14 @@ const mongoose = require("mongoose");
 const { validationResult } = require("express-validator");
 const User = require("../models/User");
 
+exports.logout = async (req, res) => {
+  res.cookie("jwt", "none", {
+    expires: new Date(Date.now() + 5 * 1000),
+    httpOnly: true,
+  });
+  res.status(200).json({ success: true, message: "guud job, välja logitud!" });
+};
+
 exports.login = async (req, res) => {
   const { user, pwd } = req.body;
   console.log(req.body);

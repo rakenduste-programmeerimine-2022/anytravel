@@ -13,6 +13,7 @@ router.use((req, res, next) => {
 
 router.post("/signup", userController.createAcc);
 router.post("/loginAuth", loginAuthController.login);
+router.get("/logout", loginAuthController.logout);
 router.post("/accountAuth", getTokenInfo);
 
 module.exports = router;

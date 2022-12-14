@@ -34,7 +34,7 @@ const PlanTrip = () => {
           flexDirection: "column",
           top: "20vh",
           left: "18vw",
-          backgroundColor: "rgba(255,255,255,0.5)",
+          backgroundColor: "rgba(255,255,255,0.8)",
           padding: "3%",
           height: "200%",
         }}
@@ -47,7 +47,7 @@ const PlanTrip = () => {
         <Typography variant="h4">
           First off, what will we call this trip: <br></br>
           <br></br>
-          <TextField label="Trip name"></TextField>
+          <TextField helperText="Trip name"></TextField>
           <br></br>
           <br></br>
         </Typography>
@@ -55,7 +55,7 @@ const PlanTrip = () => {
         <Typography variant="h4">
           Next, where will you be going [City/Country]: <br></br>
           <br></br>
-          <TextField label="Location"></TextField>
+          <TextField helperText="Location"></TextField>
           <br></br>
           <br></br>
         </Typography>
@@ -63,7 +63,11 @@ const PlanTrip = () => {
         <Typography variant="h4">
           Let's add a date when your trip will start: <br></br>
           <br></br>
-          <TextField label="Start Date"></TextField>
+          <TextField
+            id="outlined-required"
+            helperText="Start Date"
+            type="date"
+          ></TextField>
           <br></br>
           <br></br>
         </Typography>
@@ -71,7 +75,7 @@ const PlanTrip = () => {
         <Typography variant="h4">
           And when it will end: <br></br>
           <br></br>
-          <TextField label="End Date"></TextField>
+          <TextField helperText="End Date" type="date"></TextField>
           <br></br>
           <br></br>
         </Typography>
@@ -79,7 +83,7 @@ const PlanTrip = () => {
         <Typography variant="h4">
           Any notes for the trip: <br></br>
           <br></br>
-          <TextField label="Notes"></TextField>
+          <TextField helperText="Notes"></TextField>
           <br></br>
           <br></br>
         </Typography>
@@ -88,7 +92,7 @@ const PlanTrip = () => {
           And lastly, let's create a plan! Describe what you'll be doing :
           <br></br>
           <br></br>
-          <TextField label="Plan"></TextField>
+          <TextField helperText="Plan"></TextField>
           <br></br>
           <br></br>
         </Typography>

@@ -35,7 +35,7 @@ const MyTripsLogged = () => {
           flexDirection: "column",
           top: "20vh",
           left: "18vw",
-          backgroundColor: "rgba(255,255,255,0.5)",
+          backgroundColor: "rgba(255,255,255,0.8)",
           padding: "3%",
           height: "90vh",
         }}
@@ -61,7 +61,11 @@ const MyTripsLogged = () => {
         <hr></hr>
         <Typography variant="h4">
           Going to Italy with friends <br></br>
-          <Button variant="contained" color="success">
+          <Button
+            variant="contained"
+            color="success"
+            onClick={() => (window.location = "/ViewTrip")}
+          >
             View Trip
           </Button>
         </Typography>

@@ -4,7 +4,7 @@ import { useLocalState } from "../util/useLocalStorage";
 
 const PrivateRouteTrips = ({ children }) => {
   const [jwt, setJwt] = useLocalState("", "jwt");
-  return jwt ? children : <Navigate to="/MyTrips" />;
+  return jwt ? children : <Navigate to="/MyTripsnotlogged" />;
 };
 
 export default PrivateRouteTrips;
