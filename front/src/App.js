@@ -20,6 +20,7 @@ function App() {
       <Routes>
         <Route path="/" element={<SearchQuick />} />
         <Route path="/Search" element={<SearchQuick />} />
+        <Route path="/MyTripsnotlogged" element={<MyTrips />} />
         <Route
           path="/MyTrips"
           element={
