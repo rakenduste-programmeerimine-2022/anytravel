@@ -25,3 +25,10 @@ exports.CreateTrips = async (req, res) => {
   ]);
   res.send(newTrip);
 };
+
+exports.GetTrips = async (req, res) => {
+  const id = req.body;
+  const allTripsWithID = await Trip.find({ userID: id.userID }).exec();
+
+  res.send(allTripsWithID);
+};
